@@ -7,11 +7,11 @@ class Photo(models.Model):
     width = models.IntegerField(default=0)
     height = models.IntegerField(default=0)
     image = models.ImageField(null=False, blank=False,
-                              width_field="width", height="height")
+                              width_field="width", height_field="height")
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __unicode__(self):
         return self.title
 
     class Meta:
-    	ordering = "-timestamp"
+        ordering = ["-timestamp"]
