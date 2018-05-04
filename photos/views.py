@@ -4,7 +4,7 @@ from .models import Photo
 
 
 def photo_list(request):
-    queryset = Photo.object.all()
+    queryset = Photo.objects.all()
     context = {
         "photos": queryset,
     }

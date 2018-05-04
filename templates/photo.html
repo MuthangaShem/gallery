@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	{% for photo in photos %}
+	{% if photo.image %}
+	{{ photo.title }}
+	<img src="{{ photo.image.url }}">
+	{% endif %}
+	{% endfor%}
+</body>
+</html>
+
