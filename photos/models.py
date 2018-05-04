@@ -1,9 +1,8 @@
 from django.db import models
-
 # Create your models here.
 
 
-class photo(models.Model):
+class Photo(models.Model):
     title = models.CharField(max_length=200)
     width = models.IntegerField(default=0)
     height = models.IntegerField(default=0)
@@ -14,5 +13,5 @@ class photo(models.Model):
     def __unicode__(self):
         return self.title
 
-    class meta:
+    class Meta:
     	ordering = "-timestamp"
