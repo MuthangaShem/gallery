@@ -58,3 +58,7 @@ class Image(models.Model):
 
     def image_delete(self):
         self.delete()
+
+    @classmethod
+    def get_image_by_Id(cls, image_id):
+        return cls.objects.get(pk=image_id)
