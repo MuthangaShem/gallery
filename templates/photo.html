@@ -1,15 +1,66 @@
+{% load bootstrap3 %}
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
-</head>
-<body>
+	<meta charset="utf-8">
+	<title>Instapics</title>
+	{% block styles %}
+		{% bootstrap_css %}
+	{% endblock %}
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script></head>
+<body class="container">
+	
+	<div class="row">
+	{% block content %}
 	{% for photo in photos %}
-	{% if photo.image %}
-	{{ photo.title }}
-	<img src="{{ photo.image.url }}">
-	{% endif %}
-	{% endfor%}
-</body>
-</html>
+	{% if photo.image %}	
+		<div class="col-md-4">
+		{{ photo.title }}
+			<button type="button" class="" data-toggle="modal" data-target="#exampleModal{{forloop.counter}}" ><img style="width: 90%" src="{{ photo.image.url }}"></button>
+		</div>
+		<div class="modal fade" id="exampleModal{{forloop.counter}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel"> {{ photo.title}}</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <img style="width:100%" src="{{ photo.image.url }}">
+		      </div>
+		      <div class="modal-footer">
+		      </div>
+		    </div>
+		  </div>  	
+		</div>
 
+	{% endif %}
+	{% endfor %}
+	
+	</div>
+
+	<!-- Modal -->
+	
+	
+</body>
+<script>
+	// $(document).ready(function () {
+	// 	$('#exampleModal').on('show.bs.modal', function (event) {
+	// 	  var button = $(event.relatedTarget) // Button that triggered the modal
+	// 	  var recipient = button.data('whatever') // Extract info from data-* attributes
+	// 	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+	// 	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+	// 	  var modal = $(this)
+	// 	  modal.find('.modal-title').text('New message to ' + recipient)
+	// 	  modal.find('.modal-body').val(recipient)
+	// 	})
+	// });
+</script>
+	{% endblock %}
+
+</html>
