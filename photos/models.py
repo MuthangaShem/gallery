@@ -19,3 +19,22 @@ class Location(models.Model):
     @classmethod
     def update_image(cls, id, value):
         cls.objects.filter(id=id).update(location_name=value)
+
+
+class Category(models.Model):
+    category_name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.category_name
+
+     # save method
+    def category_save(self):
+        self.save()
+    # delete method
+
+    def category_delete(self):
+        self.delete()
+
+    @classmethod
+    def update_image(cls, id, value):
+        cls.objects.filter(id=id).update(category_name=value)
