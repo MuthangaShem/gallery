@@ -2,16 +2,20 @@ from django.db import models
 # Create your models here.
 
 
-class Photo(models.Model):
-    title = models.CharField(max_length=200)
-    width = models.IntegerField(default=0)
-    height = models.IntegerField(default=0)
-    image = models.ImageField(null=False, blank=False,
-                              width_field="width", height_field="height")
-    timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+class Location(models.Model):
+    location_name = models.CharField(max_length=30)
 
-    def __unicode__(self):
-        return self.title
+    def __str__(self):
+        return self.location_name
 
-    class Meta:
-        ordering = ["-timestamp"]
+    # save method
+    def location_save(self):
+        self.save()
+    # delete method
+
+    def location_delete(self):
+        self.delete()
+
+    @classmethod
+    def update_image(cls, id, value):
+        cls.objects.filter(id=id).update(location_name=value)
