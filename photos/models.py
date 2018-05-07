@@ -62,3 +62,13 @@ class Image(models.Model):
     @classmethod
     def get_image_by_Id(cls, image_id):
         return cls.objects.get(pk=image_id)
+
+    @classmethod
+    def search_by_title(cls, search_term):
+        news = cls.objects.filter(
+            image_category__category_name__icontains=search_term)
+        return news
+
+    @classmethod
+    def search_category(cls, categorys_name):
+        return cls.objects.filter(image_category__category_name=categorys_name)
