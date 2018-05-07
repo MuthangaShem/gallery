@@ -27,7 +27,7 @@ class Category(models.Model):
     def __str__(self):
         return self.category_name
 
-     # save method
+    # save method
     def category_save(self):
         self.save()
     # delete method
@@ -77,7 +77,9 @@ class Image(models.Model):
     def filter_by_location(cls, location):
         return cls.objects.filter(image_location=location)
 
-
-     @classmethod
+    @classmethod
     def update_image(cls, id, value):
         cls.objects.filter(id=id).update(image_url=value)
+
+    class Meta:
+        ordering = ["-pub_date"]
